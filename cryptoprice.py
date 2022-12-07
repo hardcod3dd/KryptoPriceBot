@@ -9,6 +9,7 @@ api = tweepy.API(auth)
 cryptos = ['BTC', 'ETH', 'BNB','XRP', 'DOGE', 'AVAX', 'SOL', 'DOT']
 prices = {}
 url = 'https://api.binance.com/api/v3/ticker/price?symbol={}USDT'
+admin = '2681699286'
 
 def getprices():
     for crypto in cryptos:
@@ -28,9 +29,11 @@ def main():
             print("tweeted")
             time.sleep(30 * 60)
         except KeyboardInterrupt:
+            api.send_direct_message(admin, "keyboard interrupt")
             break
         except:
             print("some error.")
+            api.send_direct_message(admin, "cant tweet")
             pass
 
 
